@@ -1,7 +1,7 @@
 
 /*
  * Local Storage interface to store/retrieve information on the client
- * TODO: use a cookie fallback - currently returns null for everything which does not support localStorage
+ * Uses localStorage if supported with an optional cookie fallback
  */
 
 var ClientStorage = (function(){
