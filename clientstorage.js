@@ -11,7 +11,7 @@ var ClientStorage = (function(){
 	var m_bUseLocalStorage = false;
 	var m_bUseCookies = false;
 	
-	// cookie code from mdn - https://developer.mozilla.org/en-US/docs/DOM/document.cookie
+	// credit: cookie code based on mdn - https://developer.mozilla.org/en-US/docs/DOM/document.cookie
 	var CookieHandler = {
 		getItem: function (sKey) {
 			if (!sKey || !this.hasItem(sKey)) { return null; }
@@ -56,31 +56,31 @@ var ClientStorage = (function(){
 		},
 		Get: function(sKey){
 	
-			var Ret = null;
+			var ret = null;
 			
 			if (typeof sKey === "string")
 			{
 				if (m_bUseLocalStorage)
 				{
-					Ret = window.localStorage.getItem(m_sNamespace + sKey);
+					ret = window.localStorage.getItem(m_sNamespace + sKey);
 				}
 				else if (m_bUseCookies)
 				{
-					CookieHandler.getItem(m_sNamespace + sKey);
+					ret = CookieHandler.getItem(m_sNamespace + sKey);
 				}
 
-				if (typeof Ret === "string")
+				if (typeof ret === "string")
 				{
-					var cValue = JSON.parse(Ret);
+					var cValue = JSON.parse(ret);
 
 					if (typeof cValue.Val !== "undefined")
 					{
-						Ret = cValue.Val;
+						ret = cValue.Val;
 					}
 				}
 			}
 		
-			return Ret;
+			return ret;
 		},
 		Set: function(sKey, Value){
 	
