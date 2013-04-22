@@ -54,7 +54,7 @@ var ClientStorage = (function(){
 				m_bUseCookies = typeof bCookiesFallback == "boolean" ? bCookiesFallback : false;
 			}
 		},
-		Get: function(sKey){
+		Get: function(sKey, defaultReturnValue){
 	
 			var ret = null;
 			
@@ -78,6 +78,11 @@ var ClientStorage = (function(){
 						ret = cValue.Val;
 					}
 				}
+			}
+		
+			if (ret === null && typeof defaultReturnValue !== "undefined")
+			{
+				ret = defaultReturnValue;
 			}
 		
 			return ret;
